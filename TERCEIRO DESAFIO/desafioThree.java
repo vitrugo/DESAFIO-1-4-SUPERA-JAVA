@@ -1,40 +1,44 @@
-public static void main(String[] args) throws Exception {
-
-    Scanner ler = new Scanner(System.in);        
-  
-    int n;
-    
-    System.out.printf("Informe o tamanho do lista:");
-    n = ler.nextInt();
-               
-    ArrayList<Integer> entrada = new ArrayList<Integer>();
-    ArrayList<Integer> numerosPares = new ArrayList<Integer>();
-    ArrayList<Integer> numerosImpares = new ArrayList<Integer>();
-  
-    System.out.println("Informe os numeros da lista:");
-    for (int i = 0; i < n; i++) {
-        ler = new Scanner(System.in);
-        entrada.add(ler.nextInt());
-        
-        if (entrada.get(i) % 2 == 0) { 
-            numerosPares.add(entrada.get(i));
-        } else {
-            numerosImpares.add(entrada.get(i));
-        }       
+import java.util.HashMap;
+ 
+public class desafioThree {
+     
+    // Função para retornar a contagem
+    // de todos os pares válidos
+    static int countPairs(int arr[], int n)
+    {
+     
+        // Para armazenar as frequências
+        // de (arr[i] - i)
+        HashMap<Integer,
+                Integer> map = new HashMap<Integer,
+                                           Integer>();
+        for (int i = 0; i < n; i++)
+            map.put(arr[i] - i, 0);
+         
+        for (int i = 0; i < n; i++)
+            map.put(arr[i] - i, map.get(arr[i] - i) + 1);
+     
+        // Para armazenar a contagem necessária
+        int res = 0;
+        for (int x : map.values())
+        {
+            int cnt = x;
+     
+            // Se cnt é o número de elementos
+            // cuja diferença com seu índice
+            // é o mesmo então ((cnt * (cnt - 1)) / 2)
+            // tais pares são possíveis
+            res += ((cnt * (cnt - 1)) / 2);
+        }
+     
+        return res;
     }
-    
-    Collections.sort(numerosPares);    
-    Collections.sort(numerosImpares);        
-    Collections.reverse(numerosImpares);
-  
-    System.out.println("Numeros pares:");
-    for (int par : numerosPares) {
-        System.out.println(par);
+     
+    public static void main (String[] args)
+    {
+        int arr[] = { 1, 5, 3, 4, 2 };
+        int n = arr.length;
+     
+        System.out.println(countPairs(arr, n));
     }
-  
-    System.out.println("Numeros impares:");
-    for (int impar : numerosImpares) {
-        System.out.println(impar);
-    }
-    ler.close();
-  }
+}
