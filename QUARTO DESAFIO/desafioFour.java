@@ -1,14 +1,15 @@
-package Strings;
-
 import java.util.Scanner;
 
-public class URI 1235 {
+public class desafioFour {
 
 	public static void main(String[] args) {
-		Scanner leitor = new Scanner(System.in);
-		int N = leitor.nextInt();
+
+		Scanner sc = new Scanner(System.in);
+
+		//System.out.println("Insira a quantidade de quantas frases ira colocar para efetuar o problema proposto: ");
+		int N = sc.nextInt();
 		for (int i = 0; i < N; i++) {
-			String frase = readLine(leitor);
+			String frase = readLine(sc);
 			StringBuilder parte1 = new StringBuilder(frase.substring(0, frase.length() / 2));
 			StringBuilder parte2 = new StringBuilder(frase.substring(frase.length() / 2, frase.length()));
 			parte1.reverse();
@@ -16,12 +17,12 @@ public class URI 1235 {
 			System.out.println(parte1.toString() + parte2.toString());
 		}
 	}
-	
-	public static String readLine(Scanner leitor) {
-		String line = leitor.nextLine();
+
+	public static String readLine(Scanner sc) {
+		String line = sc.nextLine();
 		while (line.isEmpty())
-			line = leitor.nextLine();
+			line = sc.nextLine();
 		return line;
 	}
-	
+
 }
